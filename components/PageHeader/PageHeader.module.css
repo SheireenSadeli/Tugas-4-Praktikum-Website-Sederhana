@@ -1,0 +1,299 @@
+.header {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(64px, 9vw, 112px) clamp(88px, 11vw, 144px);
+  background: var(--green-deep);
+  color: var(--paper);
+}
+
+/* Dua cahaya lembut: merah muda di kanan atas, biru air di kiri bawah (dipakai semua header) */
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 88% 12%, rgba(211, 150, 140, 0.3), transparent 50%),
+    radial-gradient(circle at 6% 100%, rgba(16, 86, 102, 0.7), transparent 55%);
+  pointer-events: none;
+}
+
+/* Gelombang di tepi bawah, senada dengan pemisah section lain */
+.header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  z-index: 2;
+  height: 40px;
+  background: var(--paper);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 40' preserveAspectRatio='none'%3E%3Cpath d='M0 40V24C240 0 480 0 720 20S1200 40 1440 12V40Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 40' preserveAspectRatio='none'%3E%3Cpath d='M0 40V24C240 0 480 0 720 20S1200 40 1440 12V40Z'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
+  pointer-events: none;
+}
+
+/* ---------- Hiasan kanan ---------- */
+.art {
+  position: absolute;
+  top: 47%;
+  right: max(0px, calc((100vw - var(--container)) / 2));
+  width: 400px;
+  height: 420px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-12px);
+  }
+}
+
+/* Foto berbingkai lengkung (dipakai semua header) */
+.frame {
+  position: absolute;
+  inset: 0;
+  border-radius: 200px 200px 24px 24px;
+  box-shadow: 0 34px 60px -30px rgba(0, 0, 0, 0.65);
+  animation: float 7s ease-in-out infinite alternate;
+}
+
+.photo {
+  object-fit: cover;
+  object-position: 0% center;
+  border-radius: inherit;
+}
+
+/* Bingkai tipis merah muda yang menjauh sedikit dari foto */
+.frame::before {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  border: 1px solid rgba(211, 150, 140, 0.55);
+  border-radius: 212px 212px 36px 36px;
+}
+
+/* Teratai merah muda melayang di atas air (About) */
+.lotus {
+  position: absolute;
+  left: 4%;
+  top: 4%;
+  width: 92%;
+  height: auto;
+  aspect-ratio: 1;
+  color: var(--rosy);
+  filter: drop-shadow(0 0 36px rgba(211, 150, 140, 0.35));
+  animation: float 7s ease-in-out infinite alternate;
+}
+
+/* Tiga bola kaca berwarna (Product): Pagi, Senja, Malam */
+.orbs {
+  position: absolute;
+  inset: 0;
+}
+
+.orbs > span {
+  position: absolute;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  box-shadow:
+    0 30px 50px -30px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+  animation: float 7s ease-in-out infinite alternate;
+}
+
+.orbs > span:nth-child(1) {
+  left: 4%;
+  top: 2%;
+  width: 52%;
+  background: radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.75), #dde3b0 52%, #b6c284 100%);
+}
+
+.orbs > span:nth-child(2) {
+  right: 0;
+  top: 26%;
+  width: 62%;
+  background: radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.7), #f1d2c6 52%, #d3968c 100%);
+  animation-duration: 9s;
+  animation-delay: -3s;
+}
+
+.orbs > span:nth-child(3) {
+  left: 16%;
+  top: 64%;
+  width: 38%;
+  border: 1px solid rgba(247, 244, 213, 0.3);
+  background: radial-gradient(circle at 30% 28%, rgba(247, 244, 213, 0.45), #0a3323 62%);
+  animation-duration: 8s;
+  animation-delay: -5s;
+}
+
+/* ---------- Riak air ---------- */
+/* Elips berpusat di tepi bawah hiasan (permukaan air) */
+.ripples {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  height: 22%;
+  margin-top: -11%;
+}
+
+/* Dasar teratai ada sedikit di atas tepi bawah kotak */
+.ripplesLotus {
+  top: 73%;
+  margin-top: 0;
+}
+
+.ripples span {
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid var(--rosy);
+  border-radius: 50%;
+  opacity: 0;
+  animation: ripple 9s ease-out infinite;
+}
+
+.ripples span:nth-child(2) {
+  animation-delay: 3s;
+}
+
+.ripples span:nth-child(3) {
+  animation-delay: 6s;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+/* ---------- Teks ---------- */
+.inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--container);
+}
+
+/* Garis aksen kecil di atas judul, memanjang saat halaman dibuka */
+.inner::before {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 4px;
+  margin-bottom: 28px;
+  border-radius: 2px;
+  background: var(--rosy);
+  animation: grow 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) 0.1s both;
+}
+
+@keyframes grow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 56px;
+  }
+}
+
+.inner h1 {
+  max-width: 16ch;
+  font-size: clamp(2.8rem, 6.4vw, 4.8rem);
+  line-height: 1.06;
+}
+
+.lead {
+  max-width: 50ch;
+  margin-top: 22px;
+  font-size: 1.25rem;
+  color: rgba(247, 244, 213, 0.85);
+}
+
+/* ---------- Lencana fakta ---------- */
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 34px;
+  list-style: none;
+}
+
+.facts li {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 18px 5px 5px;
+  border: 1px solid rgba(247, 244, 213, 0.28);
+  border-radius: 999px;
+  background: rgba(247, 244, 213, 0.08);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.4;
+  transition: transform 0.25s, border-color 0.25s, background-color 0.25s;
+}
+
+.facts li:hover {
+  transform: translateY(-2px);
+  border-color: rgba(211, 150, 140, 0.7);
+  background: rgba(247, 244, 213, 0.14);
+}
+
+/* Ikon di dalam lingkaran merah muda */
+.facts svg {
+  flex: none;
+  width: 32px;
+  height: 32px;
+  padding: 7px;
+  border-radius: 50%;
+  background: rgba(211, 150, 140, 0.22);
+  color: var(--rosy);
+}
+
+/* Layar sempit: hiasan mengecil dan memudar ke belakang teks agar tetap terbaca */
+@media (max-width: 1000px) {
+  .art {
+    right: -70px;
+    width: 280px;
+    height: 300px;
+    opacity: 0.28;
+  }
+
+  .frame {
+    border-radius: 140px 140px 20px 20px;
+  }
+
+  .frame::before {
+    border-radius: 152px 152px 32px 32px;
+  }
+}
+
+@media (max-width: 720px) {
+  .facts li {
+    font-size: 0.9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frame,
+  .lotus,
+  .orbs > span {
+    animation: none;
+  }
+
+  .ripples {
+    display: none;
+  }
+}

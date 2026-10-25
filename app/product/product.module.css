@@ -1,0 +1,182 @@
+/* ---------- Detail produk ---------- */
+/* Section detail: jarak di atas dan di bawah tombol kembali memakai satu nilai yang sama */
+.detailSection {
+  --back-gap: clamp(20px, 3vw, 36px);
+  padding-block: var(--back-gap) clamp(56px, 9vw, 112px);
+}
+
+/* Tombol kembali: awalnya hanya lingkaran berpanah, teksnya muncul saat disorot atau difokus */
+.back {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  height: 48px;
+  padding-inline: 12px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--card) 70%, transparent);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1;
+  transition: background-color 0.25s, border-color 0.25s;
+}
+
+.backIcon {
+  flex: none;
+  transform: scaleX(-1);
+  transition: transform 0.3s;
+}
+
+.backLabel {
+  max-width: 0;
+  margin-inline: 0;
+  opacity: 0;
+  white-space: nowrap;
+  transition: max-width 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), margin 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.25s;
+}
+
+.back:hover,
+.back:focus-visible {
+  border-color: var(--rosy);
+  background: var(--card);
+}
+
+.back:hover .backIcon,
+.back:focus-visible .backIcon {
+  transform: scaleX(-1) translateX(3px);
+}
+
+.back:hover .backLabel,
+.back:focus-visible .backLabel {
+  max-width: 260px;
+  margin-inline: 10px 8px;
+  opacity: 1;
+}
+
+.back:focus-visible {
+  outline: 2px solid var(--water);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back,
+  .backIcon,
+  .backLabel {
+    transition: none;
+  }
+}
+
+.detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 6vw, 80px);
+  align-items: center;
+  margin-top: var(--back-gap);
+}
+
+.stageWrap {
+  --arch: 200px;
+  position: relative;
+}
+
+.stageWrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--moss);
+  border-radius: var(--arch) var(--arch) 8px 8px;
+  transform: translate(18px, 18px);
+}
+
+.stage {
+  aspect-ratio: 4 / 5;
+}
+
+.info h1 {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+}
+
+.tagline {
+  margin-top: 8px;
+  font-size: 1.25rem;
+  color: var(--ink-soft);
+}
+
+.price {
+  margin-top: 24px;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.price span {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+
+.desc {
+  margin-top: 20px;
+}
+
+.notes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.notes div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--card);
+}
+
+.notes svg {
+  margin-bottom: 8px;
+  color: var(--water);
+}
+
+.notes dt {
+  font-weight: 700;
+}
+
+.notes dd {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 520px) {
+  .notes {
+    grid-template-columns: 1fr;
+  }
+}
+
+.actions {
+  margin-top: 32px;
+}
+
+.others {
+  margin-bottom: 40px;
+}
+
+@media (max-width: 860px) {
+  .detail {
+    grid-template-columns: 1fr;
+  }
+
+  .stageWrap {
+    --arch: 120px;
+    margin-right: 18px;
+    margin-bottom: 18px;
+  }
+
+  .stage {
+    aspect-ratio: 4 / 3;
+  }
+}

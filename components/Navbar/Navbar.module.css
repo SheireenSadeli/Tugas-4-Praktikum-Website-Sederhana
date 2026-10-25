@@ -1,0 +1,108 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(247, 244, 213, 0.88);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+  transition: box-shadow 0.3s;
+}
+
+.scrolled {
+  box-shadow: 0 10px 24px -20px rgba(10, 51, 35, 0.6);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 72px;
+}
+
+.brand {
+  display: inline-flex;
+  color: var(--green-deep);
+}
+
+.nav ul {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+
+.link {
+  display: inline-block;
+  padding: 8px 0;
+  border-bottom: 3px solid transparent;
+  font-weight: 500;
+  transition: border-color 0.2s;
+}
+
+.link:hover {
+  border-bottom-color: var(--moss);
+}
+
+/* Link aktif: garis merah muda + teks lebih tebal */
+.active,
+.active:hover {
+  border-bottom-color: var(--rosy);
+  font-weight: 700;
+}
+
+.toggle {
+  display: none;
+  min-height: 44px;
+  padding: 8px 18px;
+  border: 2px solid var(--green-deep);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--green-deep);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@media (max-width: 720px) {
+  .toggle {
+    display: inline-block;
+  }
+
+  .nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 8px 24px 20px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav.open {
+    display: block;
+  }
+
+  .nav ul {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .link {
+    display: block;
+    padding: 12px 0;
+    border-bottom-width: 0;
+    border-left: 4px solid transparent;
+    padding-left: 12px;
+  }
+
+  .link:hover {
+    border-bottom-color: transparent;
+    border-left-color: var(--moss);
+  }
+
+  .active,
+  .active:hover {
+    border-left-color: var(--rosy);
+  }
+}

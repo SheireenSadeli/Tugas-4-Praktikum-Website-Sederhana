@@ -1,0 +1,23 @@
+.state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: clamp(72px, 14vw, 160px) 24px;
+  text-align: center;
+}
+
+.state p {
+  color: var(--ink-soft);
+}
+
+.pulse {
+  color: var(--rosy);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.35;
+  }
+}

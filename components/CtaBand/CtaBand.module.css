@@ -1,0 +1,85 @@
+.band {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(56px, 9vw, 96px);
+  color: var(--paper);
+}
+
+.water {
+  --band: var(--water);
+}
+
+.deep {
+  --band: var(--green-deep);
+}
+
+/* Latar polos diberi sedikit cahaya supaya tidak datar */
+.band {
+  background-color: var(--band);
+  background-image: radial-gradient(
+    circle at 82% 18%,
+    rgba(247, 244, 213, 0.14),
+    transparent 55%
+  );
+}
+
+/* Foto latar */
+.photo {
+  position: absolute;
+  inset: 0;
+  background: var(--cta-image) center / cover no-repeat;
+}
+
+/* Lapisan warna di atas foto: pekat di kiri tempat teks, transparan di kanan */
+.shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--band) 94%, transparent) 0%,
+    color-mix(in srgb, var(--band) 72%, transparent) 50%,
+    color-mix(in srgb, var(--band) 30%, transparent) 100%
+  );
+}
+
+@media (max-width: 720px) {
+  .shade {
+    background: color-mix(in srgb, var(--band) 80%, transparent);
+  }
+}
+
+.inner {
+  position: relative;
+}
+
+.inner p {
+  margin-block: 12px 28px;
+}
+
+.lotus {
+  position: absolute;
+  right: max(2vw, calc((100vw - var(--container)) / 2));
+  top: 50%;
+  margin-top: -180px;
+  opacity: 0.09;
+  animation: drift 9s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes drift {
+  from {
+    transform: translateY(-10px) rotate(-2deg);
+  }
+  to {
+    transform: translateY(10px) rotate(2deg);
+  }
+}
+
+@media (max-width: 720px) {
+  .lotus {
+    width: 240px;
+    height: 240px;
+    margin-top: -120px;
+    right: -40px;
+  }
+}

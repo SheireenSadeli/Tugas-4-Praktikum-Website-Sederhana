@@ -1,0 +1,275 @@
+.story {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(32px, 6vw, 80px);
+  align-items: center;
+}
+
+.collage {
+  position: relative;
+  padding: 0 36px 36px 0;
+}
+
+.photo {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 200px 200px 8px 8px;
+  overflow: hidden;
+}
+
+.photoImage {
+  object-fit: cover;
+  object-position: 22% center;
+  transition: transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.photo:hover .photoImage {
+  transform: scale(1.04);
+}
+
+.photoSmall {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 40%;
+  aspect-ratio: 1;
+  border: 8px solid var(--paper);
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+
+.photoSmallImage {
+  object-fit: cover;
+  object-position: 82% 72%;
+}
+
+/* Label kecil di atas cerita */
+.eyebrow {
+  margin-bottom: 14px;
+  color: var(--rosy);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* Kalimat pembuka cerita: besar, dengan garis aksen di bawahnya */
+.leadLine {
+  max-width: 24ch;
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  line-height: 1.25;
+}
+
+.leadLine::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 3px;
+  margin-top: 24px;
+  border-radius: 2px;
+  background: var(--rosy);
+}
+
+/* Isi cerita: baris lebih lega, antarparagraf diberi jarak jelas */
+.body {
+  display: grid;
+  gap: 18px;
+  margin-top: 24px;
+  color: var(--ink-soft);
+  line-height: 1.8;
+}
+
+/* Kutipan: garis merah muda di kiri, latar blush tipis */
+.quote {
+  display: flex;
+  gap: 14px;
+  margin-top: 40px;
+  padding: 18px 22px 18px 18px;
+  border-left: 4px solid var(--rosy);
+  border-radius: 0 18px 18px 0;
+  background: color-mix(in srgb, var(--blush) 45%, transparent);
+}
+
+.quote svg {
+  flex: none;
+  margin-top: 2px;
+  color: var(--rosy);
+}
+
+.quote strong {
+  display: block;
+  margin-bottom: 2px;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+/* Tiga angka ringkas di bawah cerita */
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 0;
+  margin-top: 40px;
+  list-style: none;
+}
+
+.stats li {
+  padding-inline: 28px;
+}
+
+.stats li:first-child {
+  padding-left: 0;
+}
+
+.stats li + li {
+  border-left: 1px solid var(--line);
+}
+
+.stats strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.stats span {
+  display: block;
+  margin-top: 4px;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 860px) {
+  .story {
+    grid-template-columns: 1fr;
+  }
+
+  .photo {
+    aspect-ratio: 4 / 3;
+    border-radius: 120px 120px 8px 8px;
+  }
+}
+
+.valuesHead {
+  margin-bottom: 48px;
+}
+
+.valuesIntro {
+  margin-top: 12px;
+  color: var(--ink-soft);
+}
+
+.values {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+/* Kartu bersih berwarna terang; tiap kartu punya satu warna aksen (--accent) */
+.value {
+  position: relative;
+  height: 100%;
+  padding: 36px 30px 38px;
+  overflow: hidden;
+  border-radius: 28px;
+  background: color-mix(in srgb, var(--paper-deep), white 40%);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* Garis aksen tipis di tepi atas, memanjang saat kartu disorot */
+.value::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 30px;
+  width: 48px;
+  height: 4px;
+  border-radius: 0 0 4px 4px;
+  background: var(--accent);
+  transition: width 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.value:hover {
+  transform: translateY(-6px);
+}
+
+.value:hover::before {
+  width: calc(100% - 60px);
+}
+
+/* Baris atas kartu: ikon bulat di kiri, angka di kanan, sejajar di tengah */
+.valueTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.valueNumber {
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 3rem;
+  line-height: 1;
+  opacity: 0.4;
+}
+
+.valueIcon {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+
+.sage {
+  --accent: var(--moss);
+  --accent-soft: var(--sage);
+  --accent-ink: var(--green-deep);
+}
+
+.blush {
+  --accent: var(--rosy);
+  --accent-soft: var(--blush);
+  --accent-ink: var(--green-deep);
+}
+
+.lake {
+  --accent: var(--water);
+  --accent-soft: var(--water);
+  --accent-ink: var(--paper);
+}
+
+.value h3 {
+  font-size: 1.35rem;
+}
+
+.value p {
+  margin-top: 10px;
+  color: var(--ink-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .value,
+  .value::before {
+    transition: none;
+  }
+
+  .value:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 860px) {
+  .values {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}

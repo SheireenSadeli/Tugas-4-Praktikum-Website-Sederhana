@@ -1,0 +1,67 @@
+.form {
+  display: grid;
+  gap: 20px;
+  justify-items: start;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+}
+
+.field label {
+  font-weight: 600;
+}
+
+/* Kotak isian: sedikit lebih terang dari kartu hijau, bukan warna latar halaman */
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1.5px solid rgba(247, 244, 213, 0.32);
+  border-radius: 12px;
+  background: rgba(247, 244, 213, 0.09);
+  color: var(--paper);
+  font: inherit;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.field input:hover,
+.field textarea:hover {
+  border-color: rgba(247, 244, 213, 0.55);
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: rgba(247, 244, 213, 0.45);
+}
+
+.field textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible {
+  border-color: var(--rosy);
+  background: rgba(247, 244, 213, 0.13);
+  outline: 3px solid rgba(211, 150, 140, 0.45);
+  outline-offset: 1px;
+}
+
+/* Isian otomatis browser tidak boleh memutihkan kotak */
+.field input:-webkit-autofill,
+.field textarea:-webkit-autofill {
+  -webkit-text-fill-color: var(--paper);
+  caret-color: var(--paper);
+  box-shadow: 0 0 0 1000px #1a4a38 inset;
+}
+
+.status {
+  padding: 14px 18px;
+  border-left: 4px solid var(--rosy);
+  border-radius: 0 12px 12px 0;
+  background: rgba(247, 244, 213, 0.1);
+  color: var(--paper);
+}
